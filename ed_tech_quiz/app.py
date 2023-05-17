@@ -125,8 +125,7 @@ if button and uploaded_file is not None and mcq_count and grade and tone:
                         quiz_table_data.append({"MCQ": mcq, "Choices": options, "Correct": correct})
                     st.table(quiz_table_data)                    
                     # Display the review in a text box
-                    st.subheader("Review")
-                    st.text_area(value=response['review'])
+                    st.text_area(label="Review",value=response['review'])
             except Exception as e:
                 traceback.print_exc()
     else:

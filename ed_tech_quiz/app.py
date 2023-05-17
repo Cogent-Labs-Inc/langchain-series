@@ -73,7 +73,7 @@ overall_chain = SequentialChain(
     verbose=True)
 
 
-st.title('🦜Langchain-Series 01 Quiz Maker')
+st.title('🦜Langchain-Series: 01-Quiz Maker')
 
 # Create a form using st.form
 with st.form("user_inputs"):
@@ -115,20 +115,18 @@ if button and uploaded_file is not None and mcq_count and grade and tone:
                 if quiz_data_str is not None:
                     # convert the quiz from a str to dict
                     quiz_dict = ast.literal_eval(quiz_data_str)
+                    print(quiz_dict.keys())
                     quiz_table_data = []
                     # Iterate over the quiz dictionary and extract the required information
                     for key, value in quiz_dict.items():
                         mcq = value["mcq"]
-                        options = ", ".join([f"{option}: {value}" for option, value in value["options"].items()])
+                        options = ", ".join([f"{option}: {option_value}" for option, option_value in value["options"].items()])
                         correct = value["correct"]
                         quiz_table_data.append({"MCQ": mcq, "Choices": options, "Correct": correct})
-                    
-                    # table_columns = ["MCQ", "Choices", "Correct"]
-                    st.table(quiz_table_data, )
-                    
+                    st.table(quiz_table_data)                    
                     # Display the review in a text box
                     st.subheader("Review")
-                    st.text_area("Review", value=response['review'])
+                    st.text_area(value=response['review'])
             except Exception as e:
                 traceback.print_exc()
     else:

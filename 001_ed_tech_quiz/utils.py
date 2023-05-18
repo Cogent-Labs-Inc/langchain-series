@@ -1,7 +1,6 @@
 import PyPDF2
 import json
 import traceback
-import streamlit as st
 
 
 def parse_file(file):

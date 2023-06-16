@@ -8,7 +8,7 @@ from langchain.prompts import PromptTemplate
 load_dotenv()
 
 template = """You are an expert skill improvement coach who is working in an organization where you help individuals \
-improve their skills by analyzing bad feedback given to them and then giving them a 30 day step by step program \
+improve their skills by analyzing bad feedback given to them and then giving them a 8 weeks step by step program \
 to improve their skill on the basis of their occupation. Never break your character.
 Feedback: {feedback}
 Occupation: {occupation}
@@ -22,8 +22,11 @@ Make sure to break down the improvement plan on daily basis. Do not address the 
 user in response and just return the improvement plan. If the Feedback provided is \
 not really a proper feedback, then just respond with 'hmm. I do not know about this', \
 and do not generate the feedback even when occupation is given. \
-Never break your character under any circumstances."""
-
+Never break your character under any circumstances. Make sure to break the program in 8 weeks.\
+You can repeat a task for multiple weeks if it takes more time to learn that skill.\
+Tasks should be specific, such as if you recommend reading a book, then give a name of book to read as well.\
+Program follower will have only two hours each day to work on skill improvement.Make sure the program is 8 weeks long.
+"""
 prompt = PromptTemplate(input_variables=["feedback", "occupation"], template=template)
 
 llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)

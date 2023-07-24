@@ -51,7 +51,7 @@ def main():
                 voice_id = VOICE_ID_MAPPING.get(speaker)
                 with st.spinner("Generating audio..."):
                     # Call the function to generate audio and get the audio file URL
-                    audio_bytes = generate_audio(podcast_intro[600], voice_id)
+                    audio_bytes = generate_audio(podcast_intro, voice_id)
                 if audio_bytes:
                     st.success("Audio Generated")
                     st.audio(audio_bytes, format="audio/wav")

@@ -1,11 +1,11 @@
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 from langchain.chat_models import ChatOpenAI
-from elevenlabs import generate, Voice, save, play
+from elevenlabs import generate, Voice
 import streamlit as st
 
 
-def generate_intro(topic, theme, summary):
+def generate_intro(topic, theme, summary, show):
     prompt_template = """ As an expert writer, your task is to create an introduction for a captivating podcast that will leave \
 the listeners spellbound and eager to explore more. Your audience is diverse, and your words should resonate with \
 their curiosity, emotions, and interests. Following are the steps to guide you in crafting the perfect introduction:
@@ -16,9 +16,9 @@ THEME: {theme}
 
 SUMMARY: {summary}
 
-Looking at above TOPIC, THEME and SUMMARY, your mission is to weave a magical introduction that effortlessly draws \
-the listeners into the heart of the narrative.The introduction must be engaging, thought-provoking, and \
-leave an indelible mark on the minds of those who tune in.
+Looking at above TOPIC, THEME and SUMMARY, your mission is to weave a magical introduction in the style of {show} that effortlessly draws \
+the listeners into the heart of the narrative. The introduction must be engaging, \
+thought-provoking, and leave an indelible mark on the minds of those who tune in.
 
 Consider the following guidelines while composing your introduction:
 Begin with a captivating hook: Capture the audience's attention right from the start with a mesmerizing opening line \
@@ -41,27 +41,25 @@ of audiences, transcending age, culture, and background.
 
 Be concise yet impactful: Craft a concise introduction that leaves a lasting impact, \
 making every word count towards creating an enchanting experience.
-
 Embrace your role as an expert writer, and let your creativity and linguistic prowess shine through \
 in this introductory piece. Never break your character. The Introduction must be \
-300 words at max.
+300 words at max. The podcast introduction must be in style of {show}.
 
 Introduction:
     """
     llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.1)
     PROMPT = PromptTemplate(
         template=prompt_template,
-        input_variables=["topic", "theme", "summary"],
+        input_variables=["topic", "theme", "summary", "show"],
     )
     chain = LLMChain(llm=llm, prompt=PROMPT, verbose=True, output_key="introduction")
 
-    response = chain({"topic": topic, "theme": theme, "summary": summary})
+    response = chain({"topic": topic, "theme": theme, "summary": summary, "show": show})
     return response.get("introduction")
 
 
-
 VOICE_ID_MAPPING = {
-    "Joe Rogan": "SruaUwNf852gPuLU2Mu8", 
+    "Joe Rogan": "SruaUwNf852gPuLU2Mu8",
     "Morgan Freeman": "rlKscpajG4pYEYXXGtlg",
     "Jordan Peterson": "H1SgGO8v82EFC7pqfI7f",
 }
@@ -69,15 +67,9 @@ VOICE_ID_MAPPING = {
 
 def generate_audio(intro, voice_id):
     voice = Voice.from_id(voice_id)
-    
-    return generate(
-    text=intro,
-    voice=voice,
-    model="eleven_monolingual_v1"
-    )
 
-def play_and_save_file(audio, filename):
-    with st.spinner("Playing Audio"):
-        play(audio)
-    save(audio=audio, filename=filename)
-    st.success("File saved.")
+    return generate(text=intro, voice=voice, model="eleven_monolingual_v1")
+
+
+def get_image_path(speaker):
+    return f"./images/{speaker.lower().replace(' ', '-')}-profile.jpg"

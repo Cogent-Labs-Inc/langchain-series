@@ -1,4 +1,10 @@
-from utils import generate_intro, generate_audio, VOICE_ID_MAPPING, get_image_path
+from utils import (
+    generate_intro,
+    generate_audio,
+    get_image_path,
+    get_voices,
+    get_voice_by_name,
+)
 import streamlit as st
 from dotenv import load_dotenv
 
@@ -37,24 +43,30 @@ def main():
         podcast_intro = st.session_state.podcast_intro
         st.header("Podcast Introduction")
         st.write(podcast_intro)
+
+    if "selected_speaker" not in st.session_state:
+        st.session_state.selected_speaker = ""
+
+    if "podcast_intro" in st.session_state:
         st.header("Speech Synthesis")
-        speaker = st.selectbox(
-            "Select a Speaker", ["", "Joe Rogan", "Jordan Peterson"], index=0
-        )
+        speakers = get_voices()
+        speaker = st.selectbox("Select a Speaker", speakers, index=0)
 
         # Create a button "Create" to generate audio
         if speaker and speaker != "":
+            st.session_state.selected_speaker = speaker
             speaker_image_path = get_image_path(speaker)
-            st.image(speaker_image_path, caption=speaker, use_column_width=True)
-            get_audio = st.button("Generate Audio")
-            if get_audio:
-                voice_id = VOICE_ID_MAPPING.get(speaker)
-                with st.spinner("Generating audio..."):
-                    # Call the function to generate audio and get the audio file URL
-                    audio_bytes = generate_audio(podcast_intro, voice_id)
-                if audio_bytes:
-                    st.success("Audio Generated")
-                    st.audio(audio_bytes, format="audio/wav")
+            if speaker_image_path:
+                st.image(speaker_image_path, caption=speaker, use_column_width=True)
+            with st.spinner("Getting Voice from ElevenLabs..."):
+                speaker_voice = get_voice_by_name(speaker)
+            with st.spinner("Generating audio..."):
+                audio_bytes = generate_audio(podcast_intro[:300], speaker_voice)
+            if audio_bytes:
+                st.success("Audio Generated")
+                st.audio(audio_bytes, format="audio/wav")
+        else:
+            st.error("Speaker name must be selected")
 
 
 if __name__ == "__main__":

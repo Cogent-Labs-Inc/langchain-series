@@ -1,8 +1,9 @@
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 from langchain.chat_models import ChatOpenAI
-from elevenlabs import generate, Voice
+from elevenlabs import generate, Voice, voices
 import streamlit as st
+import os
 
 
 def generate_intro(topic, theme, summary, show):
@@ -58,18 +59,23 @@ Introduction:
     return response.get("introduction")
 
 
-VOICE_ID_MAPPING = {
-    "Joe Rogan": "SruaUwNf852gPuLU2Mu8",
-    "Morgan Freeman": "rlKscpajG4pYEYXXGtlg",
-    "Jordan Peterson": "H1SgGO8v82EFC7pqfI7f",
-}
-
-
-def generate_audio(intro, voice_id):
-    voice = Voice.from_id(voice_id)
-
+def generate_audio(intro, voice):
     return generate(text=intro, voice=voice, model="eleven_monolingual_v1")
 
 
 def get_image_path(speaker):
-    return f"./images/{speaker.lower().replace(' ', '-')}-profile.jpg"
+    image_path = f"./images/{speaker.lower().replace(' ', '-')}-profile.jpg"
+    if os.path.exists(image_path):
+        return image_path
+    else:
+        return None
+
+
+def get_voices():
+    speakers = [voice.name for voice in voices()]
+    speakers.insert(0, "")
+    return speakers
+
+
+def get_voice_by_name(name):
+    return [voice for voice in voices() if voice.name == name][0]

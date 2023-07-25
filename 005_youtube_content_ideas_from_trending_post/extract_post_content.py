@@ -26,8 +26,6 @@ def extract_page_content(url: str) -> dict:
     :param url: url for which content is extracted
     :return: extracted page content
     """
-    # Stripe alternatives post url for reference
-    # url = "https://news.ycombinator.com/item?id=36811026"
     response = requests.get(url=url)
 
     page = lxml.html.fromstring(response.text)

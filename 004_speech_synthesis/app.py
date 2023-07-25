@@ -27,16 +27,15 @@ def main():
             "Select podcast style",
             ["The Joe Rogan Experience", "The Jordan B. Peterson Podcast"],
         )
-
-        all_fields_filled = topic and theme and summary and show
+        
         generate_intro_button = st.form_submit_button("Generate Intro")
 
-        if generate_intro_button and all_fields_filled:
+        if generate_intro_button and all([topic, theme, summary, show]):
             with st.spinner("Generating Intro..."):
                 # Call the function to generate the intro and get the output
                 podcast_intro = generate_intro(topic, theme, summary, show)
                 st.session_state.podcast_intro = podcast_intro
-        elif generate_intro_button and not all_fields_filled:
+        elif generate_intro_button and not all([topic, theme, summary, show]):
             st.warning("Fill all the above fields.")
 
     if "podcast_intro" in st.session_state:

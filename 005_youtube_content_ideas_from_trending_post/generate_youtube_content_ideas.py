@@ -16,7 +16,7 @@ chat = ChatOpenAI(openai_api_key=os.getenv("OPENAI_API_KEY"))
 
 def generate_youtube_ideas_from_content(page_content: dict) -> str:
     """
-    Generates youtube ideas for the content being passed
+    Generates youtube ideas for the given content
 
     :param page_content: extracted title, description and comments/replies
     :return: generated ideas

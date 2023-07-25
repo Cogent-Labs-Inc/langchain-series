@@ -1,31 +1,39 @@
 # Viral Youtube Video Ideas Generator
 
-It is a Generative AI task that uses Langchain and OpenAI API to generate viral youtube ideas with their content script.
-It is a task that is deployed inside Streamlit app. Streamlit is an open-source Python library that is designed for 
-creating web applications with simple and intuitive user interfaces for data science and generative AI projects.
+It is a Generative AI Streamlit app that uses Langchain and OpenAI API to generate viral youtube ideas for the 
+extracted content of Hacker news post.
 
-### Prerequisites
-Before running the Streamlit app make sure to install the requirements of the task from the requirements 
-file of the directory. To install the requirements execute the command to enter the specific directory
+### Steps to Execute:
+- Create the virtual environment using the command
+  
+  `virtualenv venv`
 
-`cd 005_youtube_content_ideas_from_trending_post/`
+  (replace `venv` with the name of virtual environment)
 
-then after that run the command to install the requirements 
+- Activate the virtual environment using the command
 
-`pip install -r requirements.txt`
+   `source venv/bin/activate`
+ 
+- Before installing the command make sure to be inside the app directory. If you are outside the 
+   directory execute the command
+  
+  `cd 005_youtube_content_ideas_from_trending_post/`
 
-### How it Works?
-- When a user inputs url of Hacker news post, It takes in url, pass it to the method to 
-  extract the page title, description, comments and replies of the post.
-- A method refactors the extracted comments so that are easy for LLM (Large Language Model) to understand.
-- In the final step the extracted content i.e title, description, comments and replies has been passed to the method, 
-  which takes them to generate a prompt and pass it to chat model to get viral youtube ideas content as response.
+- Install the requirements using the  command
 
-### How to Run Streamlit App:
-- To execute the Streamlit app on localhost and execute the command
+    `pip install -r requirements.txt`
+ 
+- Execute the Streamlit app on local host using the command
 
   `streamlit run main.py`
 
-  (make sure to be inside the directory `005_youtube_content_ideas_from_trending_post/` before executing the command)
-- Input the url `https://news.ycombinator.com/item?id=36811026` to get the viral YouTube ideas related to 
-  stripe alternatives.
+### How it Works?
+- When a user inputs url of Hacker news post, it extracts the page title, description, comments and replies of the post.
+- A method refactors the extracted comments so that are understandable for LLM (Large Language Model).
+- In the final step the extracted content is used to generate the prompt that is passed to the chat model, which in turn
+  returns viral youtube ideas with their description and content script
+### POC Data
+- For the POC of getting viral youtube videos content we are using the url of a `Stripe alternative post` of Hacker news.
+  
+  `https://news.ycombinator.com/item?id=36811026`
+  

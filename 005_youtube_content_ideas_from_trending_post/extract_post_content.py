@@ -6,7 +6,7 @@ def refactor_extracted_comments(comments: list) -> str:
     """
     Refactors and cleans the extracted comments
 
-    :param comments: comments being parsed
+    :param comments: comments being refactored
     :return: refactored comments
     """
     comments = "".join(comments)
@@ -19,7 +19,7 @@ def refactor_extracted_comments(comments: list) -> str:
     return refactored_text
 
 
-def extract_page_content(url: str) -> dict:
+def extract_hackernews_page_content(url: str) -> dict:
     """
     Extracts the page content from the specified url
 

@@ -70,7 +70,7 @@ def get_image_path(speaker):
     else:
         return None
 
-
+@st.cache_data(show_spinner=False)
 def get_voices():
     speakers = [voice.name for voice in voices()]
     speakers.insert(0, "")

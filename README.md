@@ -2,6 +2,10 @@
 
 The "langchain-series" project is a collection of diverse little apps that demonstrate the practical applications of AI chatbots in real-world scenarios. Each app within the series showcases the capabilities of chatbot technologies in different domains, providing users with interactive and engaging experiences.
 
+## Stack Details
+
+Python = 3.10
+
 ## Installation
 
 1. Clone the repository to your local machine:

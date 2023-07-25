@@ -61,7 +61,7 @@ def main():
             with st.spinner("Getting Voice from ElevenLabs..."):
                 speaker_voice = get_voice_by_name(speaker)
             with st.spinner("Generating audio..."):
-                audio_bytes = generate_audio(podcast_intro[:300], speaker_voice)
+                audio_bytes = generate_audio(podcast_intro, speaker_voice)
             if audio_bytes:
                 st.success("Audio Generated")
                 st.audio(audio_bytes, format="audio/wav")

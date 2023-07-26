@@ -8,27 +8,28 @@ extracted content of Hacker news post.
 
 ### Steps to Execute:
 - Create the virtual environment using the command
-  
-  `virtualenv venv`
-
+  ```
+  python3 -m venv your-env-name`
+  ```
   (replace `venv` with the name of virtual environment)
 
 - Activate the virtual environment using the command
-
-   `source venv/bin/activate`
- 
+  ```
+   source env_name/bin/activate
+  ``` 
 - Before installing the command navigate to the app directory. If you are outside the 
    directory execute the command
-  
-  `cd 005_youtube_content_ideas_from_trending_post/`
-
-- Install the requirements using the  command
-
-    `pip install -r requirements.txt`
- 
+  ```
+  cd 005_youtube_content_ideas_from_trending_post/`
+  ```
+- Install the requirements using the command
+  ```
+  pip install -r requirements.txt
+  ```
 - Execute the Streamlit app on local host using the command
-
-  `streamlit run main.py`
+  ```
+  streamlit run main.py
+  ```
 
 ### How it Works?
 - When a user inputs url of Hacker news post, it extracts the page title, description, comments and replies of the post.

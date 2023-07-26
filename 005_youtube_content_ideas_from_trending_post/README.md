@@ -11,8 +11,6 @@ extracted content of Hacker news post.
   ```
   python3 -m venv your-env-name`
   ```
-  (replace `venv` with the name of virtual environment)
-
 - Activate the virtual environment using the command
   ```
    source env_name/bin/activate
@@ -31,13 +29,13 @@ extracted content of Hacker news post.
   ```
 
 ### How it Works?
-- When a user inputs url of Hacker news post, it extracts the page title, description, comments and replies of the post.
-- A method refactors the extracted comments so that are understandable for LLM (Large Language Model).
-- In the final step the extracted content is used to generate the prompt that is passed to the chat model, which in turn
-  returns viral youtube ideas with their description and content script
+- When a user inputs url of a Hacker news post, it extracts the page title, description, comments and replies of the post.
+- A method refactors the extracted comments so that they are understandable by the LLM (Large Language Model).
+- In the final step the extracted content is used to generate the prompt, which is passed to the chat model, which in turn
+  returns viral YouTube ideas with their description and content script
 
 ### POC Data
-- For the POC of getting viral youtube videos content, we are using the following URL of Hacker news post
+- For the POC of getting viral YouTube videos content, we are using the following URL of Hacker news post
   
   `https://news.ycombinator.com/item?id=36811026`
   

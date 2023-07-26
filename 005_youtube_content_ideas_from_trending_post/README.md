@@ -17,8 +17,7 @@ extracted content of Hacker news post.
   ```
    source env_name/bin/activate
   ``` 
-- Before installing the command navigate to the app directory. If you are outside the 
-   directory execute the command
+- Navigate to the app directory
   ```
   cd 005_youtube_content_ideas_from_trending_post/`
   ```
@@ -38,7 +37,7 @@ extracted content of Hacker news post.
   returns viral youtube ideas with their description and content script
 
 ### POC Data
-- For the POC of getting viral youtube videos content we are using the url of a `Stripe alternative post` of Hacker news.
+- For the POC of getting viral youtube videos content, we are using the following URL of Hacker news post
   
   `https://news.ycombinator.com/item?id=36811026`
   

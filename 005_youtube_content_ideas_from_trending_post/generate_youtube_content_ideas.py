@@ -29,7 +29,7 @@ def generate_youtube_ideas_from_content(page_content: dict) -> str:
     And the following are the comments on that
     {comments}
     
-    Generate 2 different viral YouTube content ideas related to this. For each idea, please provide
+    Generate 5 different viral YouTube content ideas related to this. For each idea, please provide
     title, description and youtube content script (with timestamps)
     
     Output the result in the following format using markdown:

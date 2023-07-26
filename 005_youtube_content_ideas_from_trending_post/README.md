@@ -3,6 +3,9 @@
 It is a Generative AI Streamlit app that uses Langchain and OpenAI API to generate viral youtube ideas for the 
 extracted content of Hacker news post.
 
+## Stack Details
+- Python = 3.10
+
 ### Steps to Execute:
 - Create the virtual environment using the command
   
@@ -14,7 +17,7 @@ extracted content of Hacker news post.
 
    `source venv/bin/activate`
  
-- Before installing the command make sure to be inside the app directory. If you are outside the 
+- Before installing the command navigate to the app directory. If you are outside the 
    directory execute the command
   
   `cd 005_youtube_content_ideas_from_trending_post/`
@@ -32,6 +35,7 @@ extracted content of Hacker news post.
 - A method refactors the extracted comments so that are understandable for LLM (Large Language Model).
 - In the final step the extracted content is used to generate the prompt that is passed to the chat model, which in turn
   returns viral youtube ideas with their description and content script
+
 ### POC Data
 - For the POC of getting viral youtube videos content we are using the url of a `Stripe alternative post` of Hacker news.
   

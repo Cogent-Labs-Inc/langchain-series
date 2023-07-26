@@ -14,12 +14,8 @@ def main():
 
     if url:
         with st.spinner("Processing..."):
-            loader_placeholder = st.empty()
-
             page_content = extract_hackernews_page_content(url)
             response = generate_youtube_ideas_from_content(page_content)
-
-            loader_placeholder.empty()
 
             st.markdown(response)
     else:

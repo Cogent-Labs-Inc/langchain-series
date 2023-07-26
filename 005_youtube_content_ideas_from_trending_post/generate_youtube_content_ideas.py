@@ -9,7 +9,7 @@ from langchain.prompts import (
     HumanMessagePromptTemplate
 )
 
-load_dotenv('.env')
+load_dotenv()
 
 chat = ChatOpenAI(openai_api_key=os.getenv("OPENAI_API_KEY"))
 
@@ -21,15 +21,15 @@ def generate_youtube_ideas_from_content(page_content: dict) -> str:
     :param page_content: extracted title, description and comments/replies
     :return: generated ideas
     """
-    human_message = f"""
+    human_message = """
     I've the following topic
-    {page_content['title']}
+    {title}
     with the description
-    {page_content['description']}
+    {description}
     And the following are the comments on that
-    {page_content['comments']}
+    {comments}
     
-    Generate 5 different viral YouTube content ideas related to this. For each idea, please provide
+    Generate 2 different viral YouTube content ideas related to this. For each idea, please provide
     title, description and youtube content script (with timestamps)
     
     Output the result in the following format using markdown:
@@ -64,7 +64,11 @@ def generate_youtube_ideas_from_content(page_content: dict) -> str:
     chat_model = ChatOpenAI(temperature=0.2, model="gpt-3.5-turbo-16k")
 
     llm_chain = LLMChain(prompt=chat_prompt, llm=chat_model)
-    response = llm_chain.run(input=human_message)
+    response = llm_chain.run(
+        title=page_content["title"],
+        description=page_content["description"],
+        comments=page_content["comments"]
+    )
 
     response = response.replace("\n", "\n\n")
 

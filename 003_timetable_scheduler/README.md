@@ -24,3 +24,13 @@ subjects and students data in CSV format and generates schedule for each individ
 - Run the Jupyter Notebook
 
 `jupyter notebook timetable_scheduler.ipynb`
+
+### How it Works?
+
+- It reads subjects and students data from CSV files, parses it and creates a prompt using that.
+- The prompt is used to get timetable from `gpt-4` model using langchain.
+
+### POC Data
+
+- For the POC, 5 subjects and 3 students data has been used. The data is prepared in such a way so that it covers all
+  the scenarios and edges cases.

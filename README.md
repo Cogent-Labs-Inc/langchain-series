@@ -1,48 +1,44 @@
 # Langchain-Series
 
-The "langchain-series" project is a collection of diverse little apps that demonstrate the practical applications of AI chatbots in real-world scenarios. Each app within the series showcases the capabilities of chatbot technologies in different domains, providing users with interactive and engaging experiences.
+The "langchain-series" project is a collection of diverse little POC apps that demonstrate the practical applications of
+Generative AI in real-world scenarios. Each app within the series showcases the capabilities of Generative AI
+technologies in different domains, providing users with interactive and engaging experiences.
 
 ## Stack Details
 
 Python = 3.10
 
-## Installation
+## Apps
 
-1. Clone the repository to your local machine:
-2. Create a virtual environment using the following command:
-    ```
-    python3 -m venv your-env-name
-    ```
-3. Activate the virtual environment:
-- On Linux or macOS:
-  ```
-  source env_name/bin/activate
-  ```
-- On Windows:
-  ```
-  env_name\Scripts\activate
-  ```
+langchain-series contains multiple apps, each with its own diverse features and functionalities. Generally, the apps
+have been developed on `Streamlit` or `Jupyter Notebook.`
 
-4. Install the project dependencies by running the following command:
-    ```
-    pip install -r requirements.txt
-    ```
+A brief description of each app is provided below.
 
-## Setting Up Environment Variables
+### 001_ed_tech_quiz
 
-To use the project, you need to set up your environment variables. Follow the steps below to create a `.env` file in the base project directory and add your OpenAI API key.
+### 002_youtube_content_ideas_ai
 
-1. Create a new file named `.env` in the base project directory.
+### 003_timetable_scheduler
 
-2. Open the `.env` file in a text editor and add the following line:
-```
-OPENAI_API_KEY=your-api-key-goes-here
-```
+A Generative AI-based timetable scheduler developed using the `gpt-4` model inside `Jupyter Notebook,` which, given the
+subjects and students' data for a university, will create a weekly timetable for each student keeping in mind any
+considerations/requirements provided by the student. It ensures there are no conflicts between scheduling classes and
+that the considerations are fulfilled to the maximum extent possible.
+
+### 004_speech_synthesis
+
+### 005_youtube_content_ideas_generator
+
+A Streamlit app that uses Langchain and OpenAI APIs to generate viral youtube content ideas for the extracted content of
+Hacker news posts.
+
 ## Usage
 
-1. Navigate to the project you want to run: `cd project_name`
+Each app has its own `requirements.txt` file with a `README` inside. Navigate to the specific app directory and follow
+its
+`README` to set up and run the application.
 
-2. Run the application using the following command:
-  ```
-  streamlit run app.py
-  ```
+You can use the following command to navigate to an app directory
+
+`cd <app-directory-name>`

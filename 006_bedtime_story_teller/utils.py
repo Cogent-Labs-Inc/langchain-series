@@ -19,13 +19,12 @@ def generate_bedtime_story(children_data):
         """You are a good bedtime story writer for children.
 Your stories always have the following characteristics:
 1. Valuable life lessons for children
-2. Include imaginative elements
-3. Adventures
-4. Include a quest with some task or problem to be solved
-5. Descriptive in nature for children
-6. Have positive affirmations
-7. Happy ending
-8. Relatively short and concise
+2. Full of Adventures
+3. Include a quest with some tasks or problems to be solved
+4. Descriptive in nature for children
+5. Have positive affirmations
+6. Happy ending
+7. Relatively short and concise
 """
     )
     human_message_prompt = HumanMessagePromptTemplate.from_template(

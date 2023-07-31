@@ -1,7 +1,7 @@
 import os
 
 import streamlit as st
-from dotenv import load_dotenv
+from elevenlabs import voices, generate
 from langchain.chains import LLMChain
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts.chat import (
@@ -12,31 +12,39 @@ from langchain.prompts.chat import (
 
 
 def generate_bedtime_story(children_data):
-    load_dotenv()
     os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-    chat = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.5)
+    chat = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.6)
 
     system_message_prompt = SystemMessagePromptTemplate.from_template(
         """You are a good bedtime story writer for children.
-        Your stories always have the following characteristics:
-        1. Valuable life lessons for children
-        2. Include imaginative elements
-        3. Adventures
-        4. Include a quest with some task or problem to be solved
-        5. Descriptive in nature for children
-        6. Have positive affirmations
-        7. Happy ending
-        8. Relatively short and concise
-        """
+Your stories always have the following characteristics:
+1. Valuable life lessons for children
+2. Include imaginative elements
+3. Adventures
+4. Include a quest with some task or problem to be solved
+5. Descriptive in nature for children
+6. Have positive affirmations
+7. Happy ending
+8. Relatively short and concise
+"""
     )
     human_message_prompt = HumanMessagePromptTemplate.from_template(
         """The following are the details about some children
-        {children_data}
-        
-        Your task is to write a bedtime story involving these children as characters. You must incorporate the 
-        children's different characteristics specified as key value pairs in the above data into the story. The 
-        characteristics include age, interests, hobbies, super powers they want, dream destination, challenges/fears, 
-        the best person in their life, their favorite movie/book, pet, color and food."""
+{children_data}
+
+Your task is to write a bedtime story involving these children as characters. 
+
+You must incorporate all of the children's characteristics, given in the above data, into the story.
+The characteristics are 
+1. interests
+2. hobbies
+3. super powers they want
+4. dream destination
+5. challenges/fears
+6. the best person in their life
+7. favorite food
+8. favorite movie/book
+"""
     )
     chat_prompt = ChatPromptTemplate.from_messages([system_message_prompt, human_message_prompt])
     chain = LLMChain(llm=chat, prompt=chat_prompt, verbose=True)
@@ -47,21 +55,19 @@ def generate_bedtime_story(children_data):
 
 def generate_child_fields(child_number):
     st.subheader(f"Child {child_number} Details")
-    name = st.text_input(f"Name {child_number}*")
-    gender = st.selectbox(f"Gender {child_number}*", ["Male", "Female"])
-    age = st.number_input(f"Age {child_number}*", min_value=1, max_value=100)
-    interests = st.text_area(f"Interests {child_number} (separated by commas)*")
-    superpowers = st.text_area(f"Superpowers loved {child_number} (separated by commas)*")
-    challenges_fears = st.text_input(f"Challenges/Fears {child_number}*")
+    name = st.text_input(f"C{child_number}. Name*")
+    gender = st.selectbox(f"C{child_number}. Gender*", ["Male", "Female"])
+    age = st.number_input(f"C{child_number}. Age*", min_value=1, max_value=100)
+    interests = st.text_area(f"C{child_number}. Interests (separated by commas)*")
+    superpowers = st.text_area(f"C{child_number}. Superpowers loved (separated by commas)*")
+    challenges_fears = st.text_input(f"C{child_number}. Challenges/Fears*")
 
-    dream_destination = st.text_input(f"Dream Destination {child_number}")
-    hobbies = st.text_area(f"Hobbies/Activities {child_number} (separated by commas)")
-    best_person_name = st.text_input(f"Best person name {child_number}")
-    best_person_relation = st.text_input(f"Best person relation {child_number}")
-    favorite_book_movie = st.text_input(f"Favorite Book/Movie {child_number}")
-    favorite_pet = st.text_input(f"Favorite pet {child_number}")
-    favorite_food = st.text_input(f"Favorite Food {child_number}")
-    favorite_color = st.text_input(f"Favorite Color {child_number}")
+    dream_destination = st.text_input(f"C{child_number}. Dream Destination")
+    hobbies = st.text_area(f"C{child_number}. Hobbies/Activities (separated by commas)")
+    best_person_name = st.text_input(f"C{child_number}. Best person name")
+    best_person_relation = st.text_input(f"C{child_number}. Best person relation")
+    favorite_book_movie = st.text_input(f"C{child_number}. Favorite Book/Movie")
+    favorite_food = st.text_input(f"C{child_number}. Favorite Food")
 
     required_fields = [name, gender, age, interests, superpowers, challenges_fears]
     if not all(required_fields):
@@ -73,13 +79,20 @@ def generate_child_fields(child_number):
         "Age": age,
         "Interests": interests.split(","),
         "Superpowers loved": superpowers.split(","),
-        "Best person name": best_person_name,
-        "Best person relation": best_person_relation,
-        "Favorite pet": favorite_pet,
-        "Hobbies/activities": hobbies.split(","),
-        "Favorite Food": favorite_food,
-        "Favorite Color": favorite_color,
-        "Favorite Book/Movie": favorite_book_movie,
         "Dream Destination": dream_destination,
         "Challenges/Fears": challenges_fears,
+        "Hobbies/activities": hobbies.split(","),
+        "Best person name": best_person_name,
+        "Relation with best person": best_person_relation,
+        "Favorite Food": favorite_food,
+        "Favorite Book/Movie": favorite_book_movie,
     }
+
+
+@st.cache_data(show_spinner=False)
+def get_voice_by_name(name):
+    return next((voice for voice in voices() if voice.name == name), None)
+
+
+def generate_audio(intro, voice):
+    return generate(text=intro, voice=voice, model="eleven_monolingual_v1")

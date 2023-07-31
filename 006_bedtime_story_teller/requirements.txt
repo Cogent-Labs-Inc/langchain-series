@@ -1,3 +1,4 @@
+elevenlabs==0.2.21
 langchain==0.0.247
 python-dotenv==1.0.0
 streamlit==1.25.0

@@ -28,6 +28,10 @@ that the considerations are fulfilled to the maximum extent possible.
 
 ### 004_speech_synthesis
 
+Speech Synthesis is a generative AI Streamlit app developed using Langchain, OpenAI apis, and ElevenLabs. It creates a
+podcast introduction in the style of ***Joe Rogan*** or ***Jordan Peterson***, according to user's choice. After that,
+it performs speech synthesis on the podcast.
+
 ### 005_youtube_content_ideas_generator
 
 A Streamlit app that uses Langchain and OpenAI APIs to generate viral youtube content ideas for the extracted content of

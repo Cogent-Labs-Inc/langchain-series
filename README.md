@@ -17,7 +17,16 @@ A brief description of each app is provided below.
 
 ### 001_ed_tech_quiz
 
+Quiz Generator is an app that utilizes Generative AI and the langchain library with OpenAI's gpt-3.5-turbo model to
+create multiple-choice quizzes for educational content. The app takes a piece of text, the desired number of
+multiple-choice questions, the target grade level, and the tone of the quiz as input. It then generates a set of
+multiple-choice questions conforming to the given text and the specified criteria.
+
 ### 002_youtube_content_ideas_ai
+
+YouTube Video Engagement Analyzer is an application developed to increase the engagement of YouTube videos by analyzing
+the scripts of old videos. The app uses Generative AI and is built on the langchain framework. It generates new video
+ideas and themes based on the common patterns found in high-engagement videos.
 
 ### 003_timetable_scheduler
 

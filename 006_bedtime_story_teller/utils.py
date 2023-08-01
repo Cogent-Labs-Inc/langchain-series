@@ -13,38 +13,39 @@ from langchain.prompts.chat import (
 
 def generate_bedtime_story(children_data):
     os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-    chat = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.6)
+    chat = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.5)
 
     system_message_prompt = SystemMessagePromptTemplate.from_template(
-        """You are a good bedtime story writer for children.
-Your stories always have the following characteristics:
-1. Valuable life lessons for children
-2. Full of Adventures
-3. Include a quest with some tasks or problems to be solved
-4. Descriptive in nature for children
-5. Have positive affirmations
-6. Happy ending
-7. Relatively short and concise
+        """As a gifted author of bedtime stories for children, your tales consistently embody these captivating elements:
+1. Intriguing climaxes and surprising anti-climaxes.
+2. Thrilling adventures.
+3. A series of engaging and challenging tasks for children.
+4. Detailed descriptions of each task and the steps taken to accomplish them.
+5. Stimulate problem-solving skills in young readers.
+6. Introduce a multitude of imaginative creatures with varying powers.
+7. Accompany the story with colorful illustrations to maintain interest and aid understanding.
+8. Incorporate recurring sequences or phrases that soothe and reassure young listeners.
+9. Engage young readers with elaborative descriptions that captivate their imagination.
+10. Infuse positive affirmations throughout the story to encourage confidence and kindness.
+11. Provide a heartwarming happy ending with valuable life lessons to inspire young minds.
+12. Include a variety of problems with climaxes and anti-climaxes for added excitement.
+13. Employ a pleasant tone that soothes the hearts and minds of young readers.
+14. Demonstrate verbosity and innovation in storytelling to keep the narrative fresh and captivating.
 """
     )
     human_message_prompt = HumanMessagePromptTemplate.from_template(
-        """The following are the details about some children
+        """Below are the profiles of two special children:
+
 {children_data}
 
-Your task is to write a bedtime story involving these children as characters. 
+Your enchanting task is to craft a mesmerizing detailed and descriptive bedtime story that contains these characters.
+You must include each child's characteristics given in the above data, into the story.
 
-You must incorporate all of the children's characteristics, given in the above data, into the story.
-The characteristics are 
-1. interests
-2. hobbies
-3. super powers they want
-4. dream destination
-5. challenges/fears
-6. the best person in their life
-7. favorite food
-8. favorite movie/book
+Embrace the magic of storytelling and create a unique unforgettable innovative tale that imparts wisdom, ignites imagination, encourages action with tasks and problem solving, and leaves a lasting impression on their young hearts.
+You must describe each task or adventure they accomplish in very detail. The story must be descriptive.
 """
     )
+
     chat_prompt = ChatPromptTemplate.from_messages([system_message_prompt, human_message_prompt])
     chain = LLMChain(llm=chat, prompt=chat_prompt, verbose=True)
 

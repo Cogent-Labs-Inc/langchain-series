@@ -36,3 +36,7 @@ avatars against each customer segment.
 - When a user inputs url of a webpage, it extracts the page content.
 - In the second step the extracted content is used to generate the prompt, which is passed to the chat model,
   which in turn returns customer segmentations along with their avatars
+
+### POC Data:
+
+For POC, we are creating 5 customer segments and 3 avatars against each customer segment.

@@ -29,7 +29,7 @@ avatars against each customer segment.
   ```
   streamlit run main.py
   ```
-- Before running the Jupyter Notebook, create a `.env` file containing the `OPENAI_API_KEY`
+- Before running the streamlit app, create a `.env` file containing the `OPENAI_API_KEY`
 
 ### How it Works?
 

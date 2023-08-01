@@ -1,12 +1,14 @@
 # Customer Segmentation and Avatars Generator
 
-It is a Generative AI Streamlit app that uses Langchain and OpenAI API to create customer segmentation and generate 
+It is a Generative AI Streamlit app that uses Langchain and OpenAI API to create customer segmentation and generate
 avatars against each customer segment.
 
 ## Stack Details
+
 - Python = 3.10
 
 ### Steps to Execute:
+
 - Create the virtual environment using the command
   ```
   python3 -m venv your-env-name`
@@ -27,8 +29,10 @@ avatars against each customer segment.
   ```
   streamlit run main.py
   ```
+- Before running the Jupyter Notebook, create a `.env` file containing the `OPENAI_API_KEY`
 
 ### How it Works?
+
 - When a user inputs url of a webpage, it extracts the page content.
-- In the second step the extracted content is used to generate the prompt, which is passed to the chat model, 
+- In the second step the extracted content is used to generate the prompt, which is passed to the chat model,
   which in turn returns customer segmentations along with their avatars

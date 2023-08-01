@@ -11,7 +11,7 @@ load_dotenv()
 chat = ChatOpenAI(openai_api_key=os.getenv("OPENAI_API_KEY"))
 
 
-def generate_customer_segmentation_of_webpage_content(extracted_content):
+def generate_customer_segmentation_of_webpage_content(page_content):
     human_message = """
 As an expert marketing analyst, your task is to create 5 attractive and impactful customer segments based on the 
 website audience for the given webpage content that will appeal the audience to visit the webpage.
@@ -70,8 +70,7 @@ Goals:
 and so on (must create 3 avatars for each customer segment)
 """
 
-    system_template = "You are an expert marketing analyst"
-    system_message_prompt = SystemMessagePromptTemplate.from_template(system_template)
+    system_message_prompt = SystemMessagePromptTemplate.from_template("You are an expert marketing analyst")
     human_message_prompt = HumanMessagePromptTemplate.from_template(human_message)
 
     chat_prompt = ChatPromptTemplate.from_messages(
@@ -84,7 +83,7 @@ and so on (must create 3 avatars for each customer segment)
     chat_model = ChatOpenAI(temperature=0.8, model="gpt-3.5-turbo-16k")
 
     llm_chain = LLMChain(prompt=chat_prompt, llm=chat_model, verbose=True)
-    response = llm_chain.run(page_content=extracted_content)
+    response = llm_chain.run(page_content=page_content)
     response = response.replace("\n", "\n\n")
 
     return response

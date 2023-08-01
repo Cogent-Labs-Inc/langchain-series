@@ -10,15 +10,16 @@ def main():
     url = st.text_input("Enter the URL:")
 
     if url:
-        with st.spinner("Processing..."):
-            loader_placeholder = st.empty()
-
+        with st.spinner("Extracting Page Content..."):
             page_content = extract_website_content(url)
-            response = generate_customer_segmentation_of_webpage_content(page_content)
 
-            loader_placeholder.empty()
+        if page_content:
+            with st.spinner("Generating Customer Segmentation..."):
+                response = generate_customer_segmentation_of_webpage_content(page_content)
 
             st.write(response)
+        else:
+            st.warning("Invalid URL or some unknown error occurred")
     else:
         st.warning("Please enter a URL first.")
 

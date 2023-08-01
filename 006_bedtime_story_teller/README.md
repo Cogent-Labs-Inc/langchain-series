@@ -26,6 +26,8 @@ children are part of the story and the story reflects their interests befittingl
 
 `streamlit run app.py`
 
+Before running the app, create a `.env` file, containing the API keys, in the same format as `.env.example`
+
 ### How it Works?
 
 - Gets the children data from the user

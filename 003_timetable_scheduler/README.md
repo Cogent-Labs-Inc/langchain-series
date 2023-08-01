@@ -25,6 +25,8 @@ subjects and students data in CSV format and generates schedule for each individ
 
 `jupyter notebook timetable_scheduler.ipynb`
 
+Before running the Jupyter Notebook, create a `.env` file containing the `OPENAI_API_KEY`
+
 ### How it Works?
 
 - It reads subjects and students data from CSV files, parses it and creates a prompt using that.

@@ -39,4 +39,4 @@ avatars against each customer segment.
 
 ### POC Data:
 
-For POC, we are creating 5 customer segments and 3 avatars against each customer segment.
+For the POC, we are creating 5 customer segments and 3 avatars against each customer segment.

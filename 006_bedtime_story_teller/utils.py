@@ -13,7 +13,7 @@ from langchain.prompts.chat import (
 
 def generate_bedtime_story(children_data):
     os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-    chat = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.5)
+    chat = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.7)
 
     system_message_prompt = SystemMessagePromptTemplate.from_template(
         """As a gifted author of bedtime stories for children, your tales consistently embody these captivating elements:

@@ -34,7 +34,7 @@ def generate_bedtime_story(children_data):
 """
     )
     human_message_prompt = HumanMessagePromptTemplate.from_template(
-        """Below are the profiles of two special children:
+        """Below are the profiles of two children:
 
 {children_data}
 
